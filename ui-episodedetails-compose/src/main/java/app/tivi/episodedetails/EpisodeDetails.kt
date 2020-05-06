@@ -89,7 +89,6 @@ import app.tivi.animation.invoke
 import app.tivi.common.compose.ExpandingSummary
 import app.tivi.common.compose.InsetsAmbient
 import app.tivi.common.compose.InsetsHolder
-import app.tivi.common.compose.LoadNetworkImageWithCrossfade
 import app.tivi.common.compose.SwipeDirection
 import app.tivi.common.compose.SwipeToDismiss
 import app.tivi.common.compose.TiviAlertDialog
@@ -106,6 +105,7 @@ import app.tivi.data.entities.Season
 import app.tivi.episodedetails.compose.R
 import app.tivi.ui.animations.lerp
 import app.tivi.util.TiviDateFormatter
+import dev.chrisbanes.accompanist.coil.NetworkImageWithCrossfade
 import dev.chrisbanes.accompanist.mdctheme.MaterialThemeFromMdcTheme
 import kotlin.math.hypot
 import org.threeten.bp.OffsetDateTime
@@ -229,8 +229,8 @@ private fun Backdrop(season: Season, episode: Episode) {
     Surface(modifier = Modifier.aspectRatio(16f / 10)) {
         Stack {
             if (episode.tmdbBackdropPath != null) {
-                LoadNetworkImageWithCrossfade(
-                    episode,
+                NetworkImageWithCrossfade(
+                    data = episode,
                     contentScale = ContentScale.Crop,
                     modifier = Modifier.matchParentSize()
                 )
